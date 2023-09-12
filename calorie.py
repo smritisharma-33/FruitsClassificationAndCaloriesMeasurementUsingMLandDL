@@ -20,12 +20,12 @@ def getVolume(label, area, skin_area, pix_to_cm_multiplier, fruit_contour):
 	area_fruit = (area/skin_area)*skin_multiplier #area in cm^2
 	label = int(label)
 	volume = 100
-	if label == 1 or label == 5 or label == 7 or label == 6 : #sphere-apple,mango,orange,pear
+	if label == 1 or label == 5 or label == 7 or label == 6 : #sphere-apple,tomato,orange,kiwi,onion
 		radius = np.sqrt(area_fruit/np.pi)
 		volume = (4/3)*np.pi*radius*radius*radius
 		#print (area_fruit, radius, volume, skin_area)
 	
-	if label == 2 or label == 4 or (label == 3 and area_fruit > 30): #cylinder like banana
+	if label == 2 or label == 4 or (label == 3 and area_fruit > 30): #cylinder like banana, cucumber, carrot
 		fruit_rect = cv2.minAreaRect(fruit_contour)
 		height = max(fruit_rect[1])*pix_to_cm_multiplier
 		radius = area_fruit/(2.0*height)
@@ -52,4 +52,4 @@ if __name__ == '__main__':
     
     a=r'C:\Users\M Sc-2\Desktop\data\sa\data1.jpg'
     a=cv2.imread(a)
-    #print(testing(1,a))
+    print(testing(1,a))
